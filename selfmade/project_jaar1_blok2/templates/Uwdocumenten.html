@@ -1,0 +1,21 @@
+<!-- https://www.youtube.com/watch?v=Z1RJmh_OqeA hoe je base html gebruikt -->
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<header>
+    <h1 id="Titel">EasyForYou</h1>
+</header>
+
+<h2 id="Titel2">Uw documenten</h2>
+
+<form method="POST" action="/" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <button>Submit</button>
+</form>
+
+
+{% endblock %}

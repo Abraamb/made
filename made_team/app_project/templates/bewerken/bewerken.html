@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+  <h1>Edit Voorwerp</h1>
+
+  <form method="POST" action="{{ url_for('abraam.bewerken', voorwerp_id=voorwerp.id_voorwerp) }}">
+    <h2><label for="voorwerp_naam">Naam voorwerp</label></h2>
+    <input type="text" name="voorwerp_naam" value="{{ voorwerp.voorwerp_naam }}" placeholder="Naam van het materiaal..">
+    
+    <div>
+      <label for="hoeveelheid">Hoeveelheid</label>
+      <input type="number" name="hoeveelheid" value="{{ voorwerp.hoeveelheid }}" placeholder="Aantal van ...">
+    </div>
+    
+    <div>
+      <input type="submit" value="Opslaan">
+    </div>
+  </form>
+{% endblock %}

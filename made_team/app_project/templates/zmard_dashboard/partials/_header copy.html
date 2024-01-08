@@ -1,0 +1,21 @@
+<header class="navbar navbar-light sticky-top bg-light flex-md-nowrap p-0 shadow">
+    <!-- <img src="https://zmard.com/logo.png"> -->
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-center" href="#">ZMARD - Dashboard</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+        data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Greetings profile -->
+    <div class="">
+        <div class="nav-item text-nowrap">
+            <a class="nav-link px-3" href="#">Logged in as: {{user.firstName}} {{user.lastName}}</a>
+        </div>
+    </div>
+
+    <div class="btn btn-secondary me-2 d-sm-none">
+        <div class="nav-item text-nowrap">
+            <a class="nav-link px-3" href="{{url_for('auth.logout')}}">Sign out</a>
+        </div>
+    </div>
+</header>

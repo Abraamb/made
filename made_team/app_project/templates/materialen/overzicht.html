@@ -1,0 +1,132 @@
+{%extends 'base.html'%}
+
+{%block head%}
+
+{%endblock%}
+
+{%block body%} 
+
+<div class="sidebar close">
+  <div class="logo-details">
+
+    <div class= "logo_name">
+      <img src="{{ url_for('static', filename='zmard.jpg')}}"width="180px"   />
+    </div>
+
+  </div>
+
+  <ul class="nav-links">
+    <li>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">Materialen</a></li>
+      </ul>
+    </li>
+    <li>
+      <div class="iocn-link">
+        <a href="#">
+          <i class='bx bx-collection' ></i>
+          <span class="link_name">Materialen</span>
+        </a>
+        <i class='bx bxs-chevron-down arrow' ></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#">Materialen</a></li>
+        <li><a href="{{ url_for ('abraam.toevoegen') }}">Toevoegen</a></li>
+        <li><a href="{{ url_for ('abraam.overzicht') }}">Overzicht</a></li>
+      </ul>
+    </li>
+    <li>
+
+    <li>
+      <a href="{{ url_for ('jay.contact')  }}">
+        <i class='bx bx-compass' ></i>
+        <span class="link_name">Contact</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="{{ url_for ('jay.contact')  }}">Contact</a></li>
+      </ul>
+    </li>
+    <li>
+  <div class="profile-details">
+    <div class="profile-content">
+    </div>
+  </div>
+</li>
+
+<li>
+  <a href="{{ url_for ('lars.settings') }}">
+    <i class='bx bx-cog'></i>
+    <span class="link_name">Instellingen</span>
+  </a>
+  <ul class="sub-menu blank">
+        <li><a href="{{ url_for ('lars.settings') }}">Instellingen</a></li>  
+  </ul>
+</li>
+<li>
+<div class="profile-details">
+<div class="profile-content">
+</div>
+</div>
+</li>
+
+</ul>
+</div>
+<section class="home-section">
+  <div class="home-content">
+    <i class='bx bx-menu' ></i>
+    <span class="text">Overzicht</span>
+  </div>
+<h2>Voorraad overzicht</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>voorwerp</th>
+          <th class="quantity">Aantal</th>
+          <th>Laast geupdate</th>
+          <th class="actions">Actie</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for voorwerp in voorwerpen %}
+        <tr>
+          <td>{{ voorwerp.id_voorwerp }}</td>
+          <td>{{ voorwerp.voorwerp_naam }}</td>
+          <td class="center quantity">{{ voorwerp.hoeveelheid }}</td>
+          <td>{{ voorwerp.last_updated }}</td>
+          <td class="actions">
+            <a href="{{ url_for('abraam.bewerken', voorwerp_id=voorwerp.id_voorwerp) }}">
+              <input type="button" value="bewerken" id="bewerken_button">
+            <hr>
+            <form method="POST" action="{{ url_for('abraam.verwijderen', voorwerp_id=voorwerp.id_voorwerp) }}">
+              <input type="submit" value="verwijderen" id="verwijderen_button" onclick="return confirm('Weet u zeker dat u het voorwerp wilt verwijderen?')">
+            </form>          
+          </td> 
+        </tr>
+        {% endfor %}
+      </tbody>
+      <h1></h1>
+      <form method="POST" action="{{ url_for('abraam.overzicht') }}">
+        <input type="text" name="search" placeholder="Search...">
+        <button type="submit" id="filter_button">Filter</button>
+    </form>
+    </table>
+  </section>
+    
+
+<script>
+  let arrow = document.querySelectorAll(".arrow");
+  for (var i = 0; i < arrow.length; i++) {
+    arrow[i].addEventListener("click", (e)=>{
+   let arrowParent = e.target.parentElement.parentElement;
+   arrowParent.classList.toggle("showMenu");
+    });
+  }
+  let sidebar = document.querySelector(".sidebar");
+  let sidebarBtn = document.querySelector(".bx-menu");
+  console.log(sidebarBtn);
+  sidebarBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("close");
+  });
+  </script>
+{%endblock%}

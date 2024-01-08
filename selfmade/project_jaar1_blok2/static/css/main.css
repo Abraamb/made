@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+#inlogtitel{ 
+    color: white;
+}
+
+
+
+form{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 25%;
+    left: 38%;
+    background-color: #008080;
+    padding: 5%;
+}
+
+input[type=text], input[type=password]{
+    margin-bottom: 3%;
+    padding: 5%;
+}
+
+#contact-submit{
+    text-align: center;
+    margin-top: 10%;
+    padding: 5%;
+    padding-right: 25%;
+    padding-left: 25%;
+}
+
+#Titel{
+    text-align: center;
+    background-color: #008080;
+    color: white;
+    margin-top: 0%;
+    padding: 2%;
+}
+
+#Titel2{
+    text-align: center;
+}

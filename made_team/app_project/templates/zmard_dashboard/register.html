@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Stylesheet for register page, can be adjusted externally -->
+  <link rel="stylesheet" href="https://zmard.com/dashboard_module_files/assets/dashboard/register/register-styles.css">
+
+</head>
+<body>
+  <div class="container">
+    <img src="https://zmard.com/logo.png" alt="" class="logo">
+    <h1>Register</h1>
+    <p class="warning">
+      ⚠️ <strong>IMPORTANT:</strong> The account database is public. Although passwords are hashed and salted, please avoid using passwords you've already used elsewhere.
+    </p>
+    <p class="warning">
+      ⚠️ <strong>BELANGRIJK:</strong> De accountdatabase is openbaar. Hoewel wachtwoorden gehasht en gesalt zijn, gebruik geen wachtwoorden die je eerder heeft gebruikt.
+    </p>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <form method="POST" action="{{ url_for('auth.register') }}">
+      <label for="firstName">First Name:</label>
+      <input type="text" name="firstName" required>
+      <label for="lastName">Last Name:</label>
+      <input type="text" name="lastName" required>
+      <label for="email">Email:</label>
+      <input type="text" name="email" required>
+      <label for="password">Password:</label>
+      <input type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}" 
+      title="Password must be at least 8 characters long and contain at least one lowercase letter, 
+             one uppercase letter, one numeric digit, and one special character (!@#$%^&*)"
+      required>
+      <input type="submit" value="Register">
+    </form>
+    
+    <p class="login-link">Already have an account? <a href="{{ url_for('auth.login') }}">Login</a></p>
+  </div>
+</body>
+</html>

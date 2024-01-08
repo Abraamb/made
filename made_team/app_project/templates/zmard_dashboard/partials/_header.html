@@ -1,0 +1,21 @@
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 text-center" href="/">
+      <img src="https://zmard.com/logo.png" alt="ZMARD" height="30">
+    </a>
+    <ul class="navbar-nav px-3 ms-auto">
+        <li class="nav-item text-nowrap dropdown">
+            <a class="nav-link d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{current_user.firstName}} {{current_user.lastName}}
+                <i class="fas fa-chevron-down ms-2"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="{{url_for('auth.logout')}}">Logout</a></li>
+            </ul>
+        </li>
+    </ul>
+    <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse"
+      data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </header>

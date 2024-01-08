@@ -1,0 +1,106 @@
+<!--'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap'  We used this for the sidebar-->
+{%extends 'base.html'%}
+
+{%block head%}
+
+{%endblock%}
+
+{%block body%} 
+
+<div class="sidebar close">
+   <!-- Sidebar content -->
+  <div class="logo-details">
+
+    <div class= "logo_name">
+      <img src="{{ url_for('static', filename='zmard.jpg')}}"width="180px"   />
+    </div>
+
+  </div>
+
+  <ul class="nav-links">
+    <li>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">Materialen</a></li>
+      </ul>
+    </li>
+    <li>
+      <div class="iocn-link">
+        <a href="#">
+          <i class='bx bx-collection' ></i>
+          <span class="link_name">Materialen</span>
+        </a>
+        <i class='bx bxs-chevron-down arrow' ></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#">Materialen</a></li>
+        <li><a href="{{ url_for ('abraam.toevoegen') }}">Toevoegen</a></li>
+        <li><a href="{{ url_for ('abraam.overzicht') }}">Overzicht</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="{{ url_for ('jay.contact')  }}">
+        <i class='bx bx-compass' ></i>
+        <span class="link_name">Contact</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="{{ url_for ('jay.contact')  }}">Contact</a></li>
+      </ul>
+    </li>
+    <li>
+  <div class="profile-details">
+    <div class="profile-content">
+    </div>
+  </div>
+</li>
+
+<li>
+  <a href="{{ url_for ('lars.settings') }}">
+    <i class='bx bx-cog'></i>
+    <span class="link_name">Instellingen</span>
+  </a>
+  <ul class="sub-menu blank">
+        <li><a href="{{ url_for ('lars.settings') }}">Instellingen</a></li>  
+  </ul>
+</li>
+<li>
+<div class="profile-details">
+<div class="profile-content">
+</div>
+</div>
+</li>
+
+</ul>
+</div>
+<section class="home-section">
+  <div class="home-content">
+    <i class='bx bx-menu' ></i>
+    <span class="text">Voorraadbeheer</span>
+  </div>
+</section>
+<script>
+// Toggling sub-menus when the arrow icon is clicked
+  // Get all elements with the class "arrow"
+  let arrow = document.querySelectorAll(".arrow");
+  // Add click event listener to each arrow element
+  for (var i = 0; i < arrow.length; i++) {
+   arrow[i].addEventListener("click", (e)=>{
+    // Find the parent element of the clicked arrow
+    let arrowParent = e.target.parentElement.parentElement;
+    // Toggle the "showMenu" class on the parent element to display or hide the menu
+    arrowParent.classList.toggle("showMenu");
+    });
+  }
+
+// Toggling the sidebar when the menu icon is clicked
+  // Get the sidebar element and sidebar button element
+  let sidebar = document.querySelector(".sidebar");
+  let sidebarBtn = document.querySelector(".bx-menu");
+  console.log(sidebarBtn);
+  // Add click event listener to the sidebar button
+  sidebarBtn.addEventListener("click", ()=>{
+      // Toggle the "close" class on the sidebar element to open or close the sidebar
+    sidebar.classList.toggle("close");
+  });
+  </script>
+{%endblock%}

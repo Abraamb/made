@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Stylesheet for register page, can be adjusted externally -->
+  <link rel="stylesheet" href="https://zmard.com/dashboard_module_files/assets/dashboard/login/login-styles.css">
+</head>
+<body style="margin-top: 3rem; margin-left: 3rem;">
+  <img src="https://zmard.com/logo.png" alt="" class="logo" style="width: 140px;">
+  <h1 style="margin-top: 0; padding-top:0;">Login</h1>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul>
+        {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  <form method="POST" action="{{ url_for('auth.login') }}">
+    <label for="email">Email:</label>
+    <input type="text" name="email" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" required>
+    <br>
+    <input type="submit" value="Login">
+  </form>
+
+  <p>Don't have an account? <a href="{{ url_for('auth.register') }}">Register</a></p>
+</body>
+</html>

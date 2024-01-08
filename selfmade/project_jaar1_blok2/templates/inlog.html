@@ -1,0 +1,17 @@
+<!-- https://www.youtube.com/watch?v=Z1RJmh_OqeA hoe je base html gebruikt-->
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<form action="/form_inlog" method="post"> 
+    <h1 id="inlogtitel">EasyForYou</h1>
+    <input type="text" placeholder="gebruikersnaam" name="gebruikersnaam">
+    <input type="password" placeholder="wachtwoord" name="wachtwoord">
+    <input type="submit" value="login">
+</form>
+<h1>{{info}}</h1>
+
+{% endblock %}

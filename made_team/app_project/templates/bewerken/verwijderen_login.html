@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Login om te verwijderen</title>
+{% endblock %}
+
+{% block body %}
+    <div class="login-container">
+        <h1>Login om te verwijderen</h1>
+        {% if error_message %}
+            <p class="error-message">{{ error_message }}</p>
+        {% endif %}
+        <form method="POST" action="{{ url_for('abraam.verwijderen_login') }}">
+            <div class="form-group">
+                <label for="username">gebruikersnaam:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">wachtwoord:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn-login">
+            </div>
+        </form>
+    </div>
+{% endblock %}
