@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Request Trash Bags</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        #map {
+            height: 300px;
+        }
+
+        .bar-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .bar-option {
+            padding: 10px;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .selected-bar {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+    <script>
+        // heb deze code van Geolocation api
+        function initMap() {
+            var map = L.map('map').setView([0, 0], 8); // standaard waarden
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            var marker = L.marker([0, 0], {
+                draggable: true
+            }).addTo(map);
+
+            //
+            if ('geolocation' in navigator) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var latLng = [position.coords.latitude, position.coords.longitude];
+                    map.setView(latLng, 15); // zet locatie 
+                    marker.setLatLng(latLng);
+                    document.getElementById('location').value = latLng.join(', ');
+                });
+            }
+
+            marker.on('dragend', function (event) {
+                var latLng = marker.getLatLng();
+                document.getElementById('location').value = latLng.lat + ', ' + latLng.lng;
+            });
+        }
+
+        function selectBar(barName) {
+            var selectedBarField = document.getElementById('selected-bar');
+            selectedBarField.value = barName;
+
+            var barOptions = document.querySelectorAll('.bar-option');
+            barOptions.forEach(function (option) {
+                option.classList.remove('selected-bar');
+                if (option.textContent === barName) {
+                    option.classList.add('selected-bar');
+                }
+            });
+        }
+
+
+function selectBar(element, barName) {
+        const selectedBars = document.querySelectorAll('.bar-option.selected');
+        
+        // Remove the selected class from all bar-options
+        selectedBars.forEach(selectedBar => {
+            selectedBar.classList.remove('selected');
+        });
+        
+        // Toggle the selected class on the clicked bar-option
+        element.classList.toggle('selected');
+        
+        // Update the selected_bar value
+        document.getElementById('selected-bar').value = barName;
+    }
+
+    function goBack() {
+        window.history.back();
+    }
+
+    </script>
+</head>
+
+<body>
+    <button id="go-back-button" onclick="goBack()">
+        <i class="fas fa-angle-left"></i>
+    </button>
+    
+
+    <div class="fab-wrapper">
+        <input id="fabCheckbox" type="checkbox" class="fab-checkbox" />
+        <label class="fab" for="fabCheckbox">
+          <span class="fab-dots fab-dots-1"></span>
+          <span class="fab-dots fab-dots-2"></span>
+          <span class="fab-dots fab-dots-3"></span>
+        </label>
+        <div class="fab-wheel">
+          <a class="fab-action fab-action-1">
+            <i class="fas fa-question"></i>
+          </a>
+          <a class="fab-action fab-action-2">
+            <i class="fas fa-book"></i>
+          </a>
+              <a class="fab-action fab-action-3">
+            <i class="fas fa-address-book"></i>
+          </a>
+              <a class="fab-action fab-action-4">
+            <i class="fas fa-info"></i>
+          </a>
+        </div>
+      </div>
+
+    <div class="logo">
+        <img src="https://www.circularpet.nl/wp-content/uploads/2021/11/Logo_CircularPET_Blauw_0.5x.png"
+            alt="CircularPET Logo">
+    </div>
+    
+    <h1>Vollen zakken ophalen</h1>
+    <form method="post" action="{{ url_for('request_bags') }}">
+        <h2>Welke bar bent u</h2> 
+
+        <div class="bar-options">
+            {% for bar in bars %}
+            <div id="bar-{{ loop.index }}" class="bar-option {% if selected_bar == bar.name %}selected-bar{% endif %}"
+            onclick="selectBar(this, '{{ bar.name }}')">Bar <b>{{ bar.name }}</b></div>
+            {% endfor %}
+        </div>
+
+        <div id="map"></div>
+        <label for="location"></label>
+        <input class="cordinat" type="text" id="location" name="location" required><br>
+        <label for="add-bags">Ik heb </label>
+        <input type="number" id="add-bags" name="add_bags" min="0" value="0" required>
+        <label for="add-bags">Vollen zakken </label>
+        <input type="hidden" id="selected-bar" name="bar" value="">
+        <button type="submit" class="btn">Verzoek ophaal zakken <i class="fas fa-paper-plane"></i></button>
+
+        <div class="space-kees"></div>
+
+    </form>
+    
+    <script>
+        initMap();
+    </script>
+</body>
+
+</html>

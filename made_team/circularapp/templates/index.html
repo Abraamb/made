@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Trash Bags App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{{ url_for('static', filename='frondstyle.css') }}"> 
+</head>
+<body>
+        <!-- alles staat in het engels ivm buitenlandse gebruikers  -->
+    <div class="logo">
+        <img src="https://www.circularpet.nl/wp-content/uploads/2021/11/Logo_CircularPET_Blauw_0.5x.png"
+            alt="CircularPET Logo">
+    </div>
+        <div class="container">
+        <a class="left-center" href="#"><h1>zakken zijn op</h1><h5>ik heb nieuwe zakken nodig op mijn locatie</h5></a>
+        <a class="right-center" href="{{ url_for('pickup_bags') }}"><h1>Zakken zitten vol</h1><h5>ik wil dat mijn zakken opgehaald worden</h5></a><br>
+    </div>
+</body>
+</html>
