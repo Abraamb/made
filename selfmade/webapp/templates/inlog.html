@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inloggen</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Vebego </h1>
+    </header>
+    
+    <h1>{{info}}</h1>
+
+    <form action="/form_inlog" method="post"> 
+        <h1 id="inlogtitel">Inloggen</h1>
+        <input type="text" placeholder="gebruikersnaam" name="gebruikersnaam">
+        <br>
+        <input type="password" placeholder="wachtwoord" name="wachtwoord">
+        <br>
+        <input type="submit" value="Inloggen">
+    </form>
+    <a href="/registratie" class="registratie-btn">Registreren</a>
+</body>
+</html>

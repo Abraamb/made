@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Audio Recorder</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Vebego</h1>
+    </header>
+    
+    <section>        
+        <div id="statusMessages"></div>
+        <h2>Audio Recorder</h2>
+        <button id="startBtn">Start Recording</button>
+        <button id="stopBtn" style="display:none;">Stop Recording</button> <!-- Deze knop is standaard verborgen -->
+        <audio id="audioPlayer" controls style="display:none;"></audio>
+    </section>    
+
+    <section>
+        <h2>Chat</h2>
+        <div id="chatWindow"></div>
+        <form id="messageForm">
+            <input type="text" id="messageInput" name="message" placeholder="Typ een bericht..." autocomplete="off">
+            <button type="submit">Verstuur</button>
+        </form>
+    </section>
+
+    <a href="/camera" class="foto-maken">Foto maken</a>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
